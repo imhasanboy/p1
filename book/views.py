@@ -5,14 +5,16 @@ from rest_framework.response import Response
 from .serializers import BookSerializer, AuthorSerializer
 # Create your views here.
 from rest_framework import status
+from rest_framework import generics
 
 
-class BookView(APIView):
-
-    def get(self, request, *args, **kwargs):
-        book = BookModel.objects.all()
-        serializer = BookSerializer(book, many=True)
-        return Response(serializer.data)
+class BookView(generics.ListAPIView):
+    queryset = BookModel.objects.all()
+    serializer_class = BookSerializer
+    # def get(self, request, *args, **kwargs):
+    #     book = BookModel.objects.all()
+    #     serializer = BookSerializer(book, many=True)
+    #     return Response(serializer.data)
 
 
 class DetailBookView(APIView):
@@ -22,13 +24,15 @@ class DetailBookView(APIView):
         return Response(serializer.data)
 
 
-class CreateBookView(APIView):
-    def post(self, request, *args, **kwargs):
-        serializer = BookSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors)
+class CreateBookView(generics.CreateAPIView):
+    queryset = BookModel.objects.all()
+    serializer_class = BookSerializer
+    # def post(self, request, *args, **kwargs):
+    #     serializer = BookSerializer(data=request.data)
+    #     if serializer.is_valid():
+    #         serializer.save()
+    #         return Response(serializer.data)
+    #     return Response(serializer.errors)
 
 
 class UpdateBookView(APIView):
