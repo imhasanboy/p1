@@ -13,5 +13,5 @@ urlpatterns = [
     path('author/<int:author_id>', DetailAuthorView.as_view()),
     path('author/create/', CreateAuthorView.as_view()),
     path('author/update/<int:author_id>/', UpdateAuthorView.as_view()),
-    path('author/delete/<int:author_id>/', DetailAuthorView.as_view())
+    path('author/delete/<int:author_id>/', DeleteAuthorView.as_view())
 ]
