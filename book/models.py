@@ -1,4 +1,5 @@
 from django.db import models
+from django.contrib.auth.models import User
 
 
 class AuthorModel(models.Model):
@@ -18,6 +19,7 @@ class BookModel(models.Model):
     name = models.CharField(max_length=200, default='')
     page = models.PositiveSmallIntegerField(default=1)
     price = models.PositiveIntegerField(default=1)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, default=None, null=True)
 
     def __str__(self) -> str:
         return self.name
