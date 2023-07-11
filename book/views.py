@@ -50,7 +50,7 @@ class CreateAuthorView(generics.CreateAPIView):
     serializer_class = AuthorSerializer
 
 
-class UpdateBookAuthorView(generics.RetrieveUpdateAPIView):
+class UpdateAuthorView(generics.RetrieveUpdateAPIView):
     queryset = AuthorModel.objects.all()
     serializer_class = AuthorSerializer
 
