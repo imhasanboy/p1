@@ -1,6 +1,18 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+from django.contrib.auth.models import AbstractUser
+
+
+class CustomUser(AbstractUser):
+    ROLE_CHOICES = (
+        ('a', 'Admin'),
+        ('s', 'Student'),
+        ('t', 'Teacher'),
+        ('p', 'Parent')
+    )
+    roles = models.CharField(max_length=1, choices=ROLE_CHOICES)
+
 
 class AuthorModel(models.Model):
     name = models.CharField(max_length=200, default='')
