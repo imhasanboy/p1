@@ -1,12 +1,11 @@
 from django.urls import path
 from .views import (BookView, DetailBookView, CreateBookView,
                     UpdateBookView, DeleteBookView, AuthorView, DetailAuthorView, DeleteAuthorView, UpdateAuthorView,
-                    CreateAuthorView)
+                    CreateAuthorView, GetBookAuthorView)
 from rest_framework_simplejwt.views import (
     TokenObtainPairView,
     TokenRefreshView,
 )
-
 
 urlpatterns = [
     path('api/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
@@ -20,5 +19,6 @@ urlpatterns = [
     path('author/<int:author_id>', DetailAuthorView.as_view()),
     path('author/create/', CreateAuthorView.as_view()),
     path('author/update/<int:author_id>/', UpdateAuthorView.as_view()),
-    path('author/delete/<int:author_id>/', DeleteAuthorView.as_view())
+    path('author/delete/<int:author_id>/', DeleteAuthorView.as_view()),
+    path('author_books/<int:author_id>', GetBookAuthorView.as_view())
 ]

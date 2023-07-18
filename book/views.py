@@ -58,3 +58,9 @@ class UpdateAuthorView(generics.RetrieveUpdateAPIView):
 class DeleteAuthorView(generics.DestroyAPIView):
     queryset = AuthorModel.objects.all()
     serializer_class = AuthorSerializer
+class GetBookAuthorView(APIView):
+    def get(self, request, *args, **kwargs):
+        if get_object_or_404(AuthorModel, pk=kwargs['author_id']):
+            all_book = BookModel.objects.filter()
+            serializer = BookSerializer(all_book, many=True)
+            return Response(serializer.data)
